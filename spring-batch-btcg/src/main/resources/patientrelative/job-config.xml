@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<!-- 外部文件导入开始 -->
+	<bean:import resource="classpath:job-context.xml" />
+	<!-- 外部文件导入结束 -->
+
+	<!-- 作业配置开始 -->
+	<job id="patientrelativeJob">
+		<step id="patientrelativeStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="readPMIContactToPatientRelative" processor="processorPMIContactToPatientRelative"
+					writer="writePMIContactToPatientRelative" commit-interval="50"
+					skip-limit="10000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+						<!-- <include class="org.springframework.dao.DataIntegrityViolationException"/> -->
+						<!-- <include class="org.springframework.dao.DuplicateKeyException"/> -->
+						<!-- <exclude class="java.io.FileNotFoundException"/> -->
+					</skippable-exception-classes>
+				</chunk>
+				<listeners>
+					<listener ref="patientrelativeStepSkipListener" />
+				</listeners>
+			</tasklet>
+		</step>
+	</job>
+	<bean:bean id="patientrelativeStepSkipListener"
+		class="patientrelative.SkipListenerPMIContactToPatientRelative" />
+	<!-- 作业配置结束 -->
+
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="readPMIContactToPatientRelative" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in" />
+		<bean:property name="sql"
+			value="select * from PMI_CONTACT where ( MODIFY_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and MODIFY_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')) and ACTIVE_FLAG='Y'" />
+		<bean:property name="rowMapper">
+			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
+				<bean:property name="mappedClass" value="patientmaster.contact.PMIContact" />
+			</bean:bean>
+		</bean:property>
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+		<!-- <bean:property name="preparedStatementSetter" ref="custPreparedStatementSetter"/> -->
+	</bean:bean>
+	<bean:bean id="paramStatementSetter" scope="step"
+		class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+		<bean:property name="parameters">
+			<bean:list>
+				<bean:value>#{jobParameters['last_date']}</bean:value>
+				<bean:value>#{jobParameters['cu_date']}</bean:value>
+			</bean:list>
+		</bean:property>
+	</bean:bean>
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processorPMIContactToPatientRelative" scope="step"
+		class="patientrelative.ProcessorPMIContactToPatientRelative">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="writePMIContactToPatientRelative"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<bean:property name="sql"
+			value="insert into PATIENT_RELATIVE(PATIENT_ID,RELATIVE_ID,RELATION) values(:patient_id,:contact_name,:relation)" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+</bean:beans>

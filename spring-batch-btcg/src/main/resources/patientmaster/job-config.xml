@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<!-- 外部文件导入开始 -->
+	<bean:import resource="classpath:job-context.xml" />
+	<!-- 外部文件导入结束 -->
+
+	<!-- 作业配置开始 -->
+	<job id="masterindexJob">
+		<step id="masterindexStep" next="updateContactStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="readEnterpriseMasterPatientIndex" processor="processorEnterpriseMasterPatientIndex"
+					writer="writeEnterpriseMasterPatientIndex" commit-interval="50"
+					skip-limit="10000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+						<!-- <include class="org.springframework.dao.DuplicateKeyException"/> -->
+						<!-- <exclude class="java.io.FileNotFoundException"/> -->
+					</skippable-exception-classes>
+				</chunk>
+				<listeners>
+					<listener ref="chunkListener" />
+				</listeners>
+			</tasklet>
+		</step>
+		<step id="updateContactStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="readPMIContact" processor="processorPMIContact"
+					writer="writePMIContact" commit-interval="50" skip-limit="10000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+						<!-- <include class="org.springframework.dao.DuplicateKeyException"/> -->
+						<!-- <exclude class="java.io.FileNotFoundException"/> -->
+					</skippable-exception-classes>
+				</chunk>
+				<listeners>
+					<listener ref="updateContactStepSkipListener" />
+				</listeners>
+			</tasklet>
+		</step>
+	</job>
+	<bean:bean id="chunkListener" class="patientmaster.MySkipListener" />
+	<bean:bean id="updateContactStepSkipListener" class="patientmaster.contact.SkipListenerPMIContact" />
+	<!-- 作业配置结束 -->
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="readEnterpriseMasterPatientIndex" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in" />
+		<!-- <bean:property name="sql" value="select PMI_PATIENT_MASTER.PATIENT_ID,PATIENT_NAME,SEX,NATIONALITY,NATION,MARITAL_STATUS,OCCUPATION,EDUCATION_LEVEL,DATE_OF_BIRTH,ID_TYPE,ID_NO,COMPANY,ADDRESS,ZIP,PMI_PATIENT_MASTER.CELL_PHONE,PAYER_TYPE,create_date 
+			from PMI_PATIENT_MASTER,PMI_CONTACT where (PMI_CONTACT.PATIENT_ID= PMI_PATIENT_MASTER.PATIENT_ID 
+			and CREATE_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CREATE_DATE 
+			&lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))"/> -->
+		<bean:property name="sql"
+			value="select PMI_PATIENT_MASTER.PATIENT_ID,PATIENT_NAME,SEX,NATIONALITY,NATION,MARITAL_STATUS,OCCUPATION,EDUCATION_LEVEL,DATE_OF_BIRTH,ID_TYPE,ID_NO,PMI_PATIENT_MASTER.CELL_PHONE,PAYER_TYPE,create_date from PMI_PATIENT_MASTER where ( CREATE_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CREATE_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" />
+		<bean:property name="rowMapper" ref="MapperEnterpriseMasterPatientIndex" />
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+		<!-- <bean:property name="preparedStatementSetter" ref="custPreparedStatementSetter"/> -->
+	</bean:bean>
+
+	<bean:bean id="paramStatementSetter" scope="step"
+		class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+		<bean:property name="parameters">
+			<bean:list>
+				<bean:value>#{jobParameters['last_date']}</bean:value>
+				<bean:value>#{jobParameters['cu_date']}</bean:value>
+			</bean:list>
+		</bean:property>
+	</bean:bean>
+
+	<bean:bean id="MapperEnterpriseMasterPatientIndex"
+		class="patientmaster.MapperEnterpriseMasterPatientIndex" />
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processorEnterpriseMasterPatientIndex" scope="step"
+		class="patientmaster.ProcessorEnterpriseMasterPatientIndex">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="writeEnterpriseMasterPatientIndex"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<!-- <bean:property name="sql" value="insert into MASTER_PATIENT_INDEX(CASE_OBJECT_ID,PATIENT_NAME,GENDER,MARRIAGE_TYPE,CAREER_NAME,EDUCATIONAL_LEVEL_ID,DATE_OF_BIRTH,PAPERS_CODE,WORK_UNIT,ADDESS,ZIP_CODE,TELEPHONE,HEALTH_INSURANCE_TYPE) 
+			values (:patient_id,:patient_name,:sex,:marital_status,:occupation,:education_level,to_date(:date_of_birth,'yyyy-MM-dd 
+			HH24:mi:ss'),:id_no,:company,:address,:zip,:cell_phone,:payer_type)"/> -->
+		<bean:property name="sql"
+			value="insert into MASTER_PATIENT_INDEX(CASE_OBJECT_ID,PATIENT_NAME,CAREER_NAME,DATE_OF_BIRTH,PAPERS_CODE,TELEPHONE,HEALTH_INSURANCE_TYPE,EDUCATIONAL_LEVEL_ID,MARRIAGE_TYPE,NATION_ID,NATIONNALITY_ID,PAPERS_TYPE_ID,GENDER)  values (:patient_id,:patient_name,:occupation,to_date(:date_of_birth,'yyyy-MM-dd HH24:mi:ss'),:id_no,:cell_phone,:payer_type,:education_level,:marital_status,:nation,:nationality,:id_type,:sex)" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="readPMIContact" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in" />
+		<bean:property name="sql"
+			value="select PATIENT_ID,SERIAL_NO,CONTACT_TYPE,RELATION,MODIFY_DATE,ACTIVE_FLAG,COMPANY,ADDRESS,ZIP,CONTACT_NAME,CONTACT_ID_NO from PMI_CONTACT where ( MODIFY_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and MODIFY_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')) and ACTIVE_FLAG='Y'" />
+		<bean:property name="rowMapper" ref="MapperPMIContact" />
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+		<!-- <bean:property name="preparedStatementSetter" ref="custPreparedStatementSetter"/> -->
+	</bean:bean>
+
+	<bean:bean id="MapperPMIContact" class="patientmaster.contact.MapperPMIContact" />
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processorPMIContact" scope="step"
+		class="patientmaster.contact.ProcessorPMIContact">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="writePMIContact"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<bean:property name="sql"
+			value="update MASTER_PATIENT_INDEX set WORK_UNIT=:company ,ADDESS=:address,ZIP_CODE=:zip where CASE_OBJECT_ID=:patient_id" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+</bean:beans>

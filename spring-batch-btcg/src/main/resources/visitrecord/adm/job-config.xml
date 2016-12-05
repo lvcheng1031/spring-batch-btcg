@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<!-- 外部文件导入开始 -->
+	<bean:import resource="classpath:job-context.xml" />
+	<!-- 外部文件导入结束 -->
+
+	<!-- 作业配置开始 -->
+	<job id="visitrecordadmJob">
+		<step id="visitrecordadmStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="readAdmVisitMasterToVisitRecord" processor="processorAdmVisitMasterToVisitRecord"
+					writer="writeAdmVisitMasterToVisitRecord" commit-interval="50"
+					skip-limit="10000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+						<!-- <include class="org.springframework.dao.DataIntegrityViolationException"/> 
+							<include class="org.springframework.dao.DuplicateKeyException"/> -->
+						<!-- <exclude class="java.io.FileNotFoundException"/> -->
+					</skippable-exception-classes>
+					<!-- <retryable-exception-classes> <include class="java.net.NoRouteToHostException" 
+						/> </retryable-exception-classes> -->
+				</chunk>
+				<listeners>
+					<listener ref="admVisitMasterToVisitRecordListener" />
+				</listeners>
+			</tasklet>
+		</step>
+	</job>
+	<bean:bean id="admVisitMasterToVisitRecordListener"
+		class="visitrecord.adm.SkipAdmVisitMasterToVisitRecord" />
+	<!-- 作业配置结束 -->
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="readAdmVisitMasterToVisitRecord" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in" />
+		<bean:property name="sql"
+			value="select * from ADM_VISIT_MASTER where ( VISIT_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and VISIT_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" />
+		<bean:property name="rowMapper">
+			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
+				<bean:property name="mappedClass"
+					value="visitrecord.adm.BeanSourceAdmVisitMaster" />
+			</bean:bean>
+		</bean:property>
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+	</bean:bean>
+
+	<bean:bean id="paramStatementSetter" scope="step"
+		class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+		<bean:property name="parameters">
+			<bean:list>
+				<bean:value>#{jobParameters['last_date']}</bean:value>
+				<bean:value>#{jobParameters['cu_date']}</bean:value>
+			</bean:list>
+		</bean:property>
+	</bean:bean>
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processorAdmVisitMasterToVisitRecord" scope="step"
+		class="visitrecord.adm.ProcessorAdmVisitMasterToVisitRecord">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="writeAdmVisitMasterToVisitRecord"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<bean:property name="sql"
+			value="insert into VISIT_RECORD(VISIT_ID,CASE_OBJECT_ID,DOCTOR_ID,DOCTOR_NAME,HOSPITAL_DEPARTMENT_ID,VISIT_DATE,VISIT_TYPE,HEALTH_INSURANCE_TYPE,IF_KEPT_OBSERVATION) values(:visit_id,:case_object_id,:doctor_id,:doctor_name,:hospital_department_id,to_date(:visit_date,'yyyy-MM-dd HH24:mi:ss'),:visit_type,:health_insurance_type,:IF_KEPT_OBSERVATION)" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+
+</bean:beans>

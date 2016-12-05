@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<!-- 外部文件导入开始 -->
+	<bean:import resource="classpath:job-context.xml" />
+	<!-- 外部文件导入结束 -->
+
+	<!-- 作业配置开始 -->
+	<job id="therapyMaterialJob">
+		<step id="therapyMaterialStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="readTherapyMaterial" processor="processorTherapyMaterial"
+					writer="writeTherapyMaterial" commit-interval="50" skip-limit="10000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+					</skippable-exception-classes>
+				</chunk>
+				<listeners>
+					<listener ref="TherapyMaterialListener" />
+				</listeners>
+			</tasklet>
+		</step>
+	</job>
+	<bean:bean id="TherapyMaterialListener" class="therapy.material.SkipTherapyMaterial" />
+	<!-- 作业配置结束 -->
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="readTherapyMaterial" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in" />
+		<bean:property name="sql"
+			value="select THERAPY_MATERIAL.THERAPY_VISIT_ID,THERAPY_MATERIAL.OP_SEQ_NO,THERAPY_MATERIAL.ITEM_CODE,THERAPY_MATERIAL.ITEM_NAME,THERAPY_MATERIAL.AMOUNT,THERAPY_MATERIAL.SPEC,THERAPY_MATERIAL.PRODUCT_CODE,THERAPY_MATERIAL.MANUFACTURE_NO,THERAPY_MATERIAL.MANUFACTURE_DATE,THERAPY_MATERIAL.EFFECTIVE_DATE,THERAPY_MATERIAL.DEPOSITORY_ID,THERAPY_MATERIAL.SUPPLY_MODE,THERAPY_MATERIAL.MANUFACTURER_NAME,THERAPY_MATERIAL.MANUFACTURER_REGISTER_ADDRESS,THERAPY_MATERIAL.PRODUCTION_ADDRESS,THERAPY_MATERIAL.PRODUCE_LICENSE_NO,THERAPY_MATERIAL.SUPPLIER_CHINESE_NAME,THERAPY_MATERIAL.SUPPLIER_LICENCE_NO,THERAPY_MATERIAL.REMARKS,THERAPY_MATERIAL.UNIT from THERAPY_ADMINISTER,THERAPY_MATERIAL where (THERAPY_ADMINISTER.THERAPY_VISIT_ID=THERAPY_MATERIAL.THERAPY_VISIT_ID and THERAPY_ADMINISTER.CHECKIN_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and THERAPY_ADMINISTER.CHECKIN_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" />
+		<bean:property name="rowMapper">
+			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
+				<bean:property name="mappedClass"
+					value="therapy.material.BeanTherapyMaterial" />
+			</bean:bean>
+		</bean:property>
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+	</bean:bean>
+
+	<bean:bean id="paramStatementSetter" scope="step"
+		class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+		<bean:property name="parameters">
+			<bean:list>
+				<bean:value>#{jobParameters['last_date']}</bean:value>
+				<bean:value>#{jobParameters['cu_date']}</bean:value>
+			</bean:list>
+		</bean:property>
+	</bean:bean>
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processorTherapyMaterial" scope="step"
+		class="therapy.material.ProcessorTherapyMaterial">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="writeTherapyMaterial"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<bean:property name="sql"
+			value="insert into THERAPY_MATERIAL(THERAPY_VISIT_ID,OP_SEQ_NO,ITEM_CODE,ITEM_NAME,AMOUNT,SPEC,PRODUCT_CODE,MANUFACTURE_NO,MANUFACTURE_DATE,EFFECTIVE_DATE,DEPOSITORY_ID,SUPPLY_MODE,MANUFACTURER_NAME,MANUFACTURER_REGISTER_ADDRESS,PRODUCTION_ADDRESS,PRODUCE_LICENSE_NO,SUPPLIER_CHINESE_NAME,SUPPLIER_LICENCE_NO,REMARKS,UNIT) values(:THERAPY_VISIT_ID,:OP_SEQ_NO,:ITEM_CODE,:ITEM_NAME,:AMOUNT,SPEC,:PRODUCT_CODE,:MANUFACTURE_NO,to_date(:MANUFACTURE_DATE,'yyyy-MM-dd HH24:mi:ss'),to_date(:EFFECTIVE_DATE,'yyyy-MM-dd HH24:mi:ss'),:DEPOSITORY_ID,:SUPPLY_MODE,:MANUFACTURER_NAME,:MANUFACTURER_REGISTER_ADDRESS,:PRODUCTION_ADDRESS,:PRODUCE_LICENSE_NO,:SUPPLIER_CHINESE_NAME,:SUPPLIER_LICENCE_NO,:REMARKS,:UNIT)" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+
+</bean:beans>

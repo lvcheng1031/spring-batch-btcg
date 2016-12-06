@@ -9,7 +9,7 @@ public class JobLaunchScheduler {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		@SuppressWarnings("unused")
+		@SuppressWarnings("unused")//test
 		ApplicationContext context = new ClassPathXmlApplicationContext("job-spring-scheduler.xml");
 	}
 }

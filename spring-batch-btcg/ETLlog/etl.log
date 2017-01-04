@@ -1,0 +1,16 @@
+2017-01-04 13:52:00 WARN java.lang.NullPointerException -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:149) SchedulerLauncher.java  
+2017-01-04 13:53:06 WARN 相应时间段的病人基本信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:37) DeleteForFixAfterException.java  
+2017-01-04 13:53:06 WARN 相应时间段的病人亲属信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:44) DeleteForFixAfterException.java  
+2017-01-04 13:55:00 WARN 相应时间段的病人基本信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:37) DeleteForFixAfterException.java  
+2017-01-04 13:55:00 WARN 相应时间段的病人亲属信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:44) DeleteForFixAfterException.java  
+2017-01-04 13:55:00 WARN 相应时间段的就诊记录已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:51) DeleteForFixAfterException.java  
+2017-01-04 13:55:42 WARN 相应时间段的诊断记录已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:58) DeleteForFixAfterException.java  
+2017-01-04 13:57:18 WARN 相应时间段的用药信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:70) DeleteForFixAfterException.java  
+2017-01-04 13:57:39 WARN 相应时间段的治疗信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:105) DeleteForFixAfterException.java  
+2017-01-04 13:57:39 WARN 清空完毕 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:107) DeleteForFixAfterException.java  
+2017-01-04 13:57:39 WARN [ 1900-1-1 00:00:00 - 2017-01-04 00:00:00 ) :病人基本信息作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:55) SchedulerLauncher.java  
+2017-01-04 13:57:44 WARN masterindexStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-04 13:57:46 WARN masterindexStep : 累计读取 10000 条记录,跳过  0 条记录,写入  10000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-04 13:57:47 WARN masterindexStep : 累计读取 15000 条记录,跳过  0 条记录,写入  15000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-04 13:57:48 WARN masterindexStep : 累计读取 20000 条记录,跳过  0 条记录,写入  20000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-04 13:57:50 WARN masterindexStep : 累计读取 25000 条记录,跳过  0 条记录,写入  25000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  

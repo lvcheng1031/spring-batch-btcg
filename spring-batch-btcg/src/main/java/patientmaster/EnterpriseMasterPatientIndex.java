@@ -23,6 +23,7 @@ public class EnterpriseMasterPatientIndex implements Serializable{
 	private String create_date;
 	private String contact_type;
 	private String relation;
+	private String modify_date;
 	public EnterpriseMasterPatientIndex(EnterpriseMasterPatientIndex x){
 		patient_id=x.getPatient_id();
 		patient_name=x.getPatient_name();
@@ -43,18 +44,29 @@ public class EnterpriseMasterPatientIndex implements Serializable{
 		create_date=x.getCreate_date();
 		contact_type=x.getContact_type();
 		relation=x.getRelation();
+		modify_date=x.getModify_date();
 	}
-	public String toString(){
-		StringBuffer sb=new StringBuffer();
-		sb.append("patient_id="+patient_id+";patientName="+getPatient_name()+";sex="+getSex()+";nationNality="+getNationality()+";nation="+getNation()+
-				";maritalStatus="+getMarital_status()+";occupation="+getOccupation()+";educationLevel="+getEducation_level()+
-				";dateOfBirth="+getDate_of_birth()+";idType="+getId_type()+";idNo="+getId_no()+";company="+getCompany()
-				+";address="+getAddress()+";zip="+getZip()+";cellPhone="+getCell_phone()+";payerType="+getPayer_type()+
-				";create_date="+getCreate_date()+";contact_type="+getContact_type()+";relation="+getRelation());
-		return sb.toString();
+	
+	@Override
+	public String toString() {
+		return "EnterpriseMasterPatientIndex [patient_id=" + patient_id + ", patient_name=" + patient_name + ", sex="
+				+ sex + ", nationality=" + nationality + ", nation=" + nation + ", marital_status=" + marital_status
+				+ ", occupation=" + occupation + ", education_level=" + education_level + ", date_of_birth="
+				+ date_of_birth + ", id_type=" + id_type + ", id_no=" + id_no + ", company=" + company + ", address="
+				+ address + ", zip=" + zip + ", cell_phone=" + cell_phone + ", payer_type=" + payer_type
+				+ ", create_date=" + create_date + ", contact_type=" + contact_type + ", relation=" + relation
+				+ ", modify_date=" + modify_date + "]";
 	}
+
 	public EnterpriseMasterPatientIndex(){
 		
+	}
+	
+	public String getModify_date() {
+		return modify_date;
+	}
+	public void setModify_date(String modify_date) {
+		this.modify_date = modify_date;
 	}
 	public String getPatient_name() {
 		return patient_name;

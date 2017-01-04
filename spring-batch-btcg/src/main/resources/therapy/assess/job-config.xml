@@ -26,19 +26,21 @@
 		<step id="therapyAssessStep">
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readTherapyAssess" processor="processorTherapyAssess"
-					writer="writeTherapyAssess" commit-interval="50" skip-limit="10000000">
+					writer="writeTherapyAssess" commit-interval="5000" skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="exception.MySkipableException" />
 						<include class="java.lang.Exception" />
 					</skippable-exception-classes>
 				</chunk>
 				<listeners>
-					<listener ref="TherapyAssessListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 	</job>
-	<bean:bean id="TherapyAssessListener" class="therapy.assess.SkipTherapyAssess" />
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
 	<!-- 作业配置结束 -->
 
 	<!-- 参数化读取db开始 -->

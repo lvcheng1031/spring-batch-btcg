@@ -6,6 +6,7 @@ import exception.MySkipableException;
 public class ProcessorPMIContact implements ItemProcessor<PMIContact, PMIContact> {
 
 	public PMIContact process(PMIContact in) throws Exception {
+//		System.out.println("2"+in.getPatient_id());
 		PMIContact out = new PMIContact();
 		out.setPatient_id(in.getPatient_id());
 		out.setSerial_no(in.getSerial_no());

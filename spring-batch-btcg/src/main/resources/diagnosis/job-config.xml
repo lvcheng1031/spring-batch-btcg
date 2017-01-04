@@ -26,8 +26,8 @@
 		<step id="diagnosisStep">
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readOrderDiagToDiagnosisRecord" processor="processorOrderDiagToDiagnosisRecord"
-					writer="writeOrderDiagToDiagnosisRecord" commit-interval="50"
-					skip-limit="10000000">
+					writer="writeOrderDiagToDiagnosisRecord" commit-interval="5000"
+					skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="exception.MySkipableException" />
 						<include class="java.lang.Exception" />
@@ -39,12 +39,14 @@
 						/> </retryable-exception-classes> -->
 				</chunk>
 				<listeners>
-					<listener ref="OrderDiagToDiagnosisRecordListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 	</job>
-	<bean:bean id="OrderDiagToDiagnosisRecordListener" class="diagnosis.SkipOrderDiagToDiagnosisRecord" />
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
 	<!-- 作业配置结束 -->
 
 	<!-- 参数化读取db开始 -->

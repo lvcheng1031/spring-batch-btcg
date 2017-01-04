@@ -6,6 +6,7 @@ import org.springframework.dao.DuplicateKeyException;
 
 import diagnosis.SkipOrderDiagToDiagnosisRecord;
 import exception.MySkipableException;
+import variable.Whole;
 
 public class MySkipListener implements SkipListener<EnterpriseMasterPatientIndex,EnterpriseMasterPatientIndex>{
 	Logger logger=Logger.getLogger(MySkipListener.class);
@@ -17,6 +18,14 @@ public class MySkipListener implements SkipListener<EnterpriseMasterPatientIndex
 
 	@Override
 	public void onSkipInWrite(EnterpriseMasterPatientIndex item, Throwable t) {
+//		if(t instanceof DuplicateKeyException){
+//			Whole.skipCount++;
+//			System.out.println(Whole.skipCount);
+//			if(Whole.skipCount>Whole.skipLimit){
+//				System.out.println("tui");
+//				System.exit(0);
+//			}
+//		}
 		if(!(t instanceof MySkipableException ||t instanceof DuplicateKeyException))
 			logger.warn("[masterindexJob][masterindexStep][write][skip]["+t.toString()+"]["+item.toString()+"]");
 //		if(t instanceof DuplicateKeyException)

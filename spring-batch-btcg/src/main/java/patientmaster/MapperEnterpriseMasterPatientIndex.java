@@ -28,6 +28,7 @@ public class MapperEnterpriseMasterPatientIndex implements RowMapper<EnterpriseM
 		row.setCreate_date(rs.getString("create_date"));
 //		row.setContact_type(rs.getString("contact_type"));
 //		row.setRelation(rs.getString("relation"));
+		row.setModify_date(rs.getString("modify_date"));
 		return row;
 	}
 

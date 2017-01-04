@@ -26,21 +26,22 @@
 		<step id="therapyapplyitemsStep" next="extratherapyapplyitemsStep">
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readApplyItems" processor="processorApplyItems"
-					writer="writeApplyItems" commit-interval="50" skip-limit="10000000">
+					writer="writeApplyItems" commit-interval="5000" skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="exception.MySkipableException" />
 						<include class="java.lang.Exception" />
 					</skippable-exception-classes>
 				</chunk>
 				<listeners>
-					<listener ref="ApplyItemsListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 		<step id="extratherapyapplyitemsStep">
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readextraApplyItems" processor="processorApplyItems"
-					writer="writeApplyItems" commit-interval="50" skip-limit="10000000">
+					writer="writeApplyItems" commit-interval="5000" skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="exception.MySkipableException" />
 						<include class="java.lang.Exception" />
@@ -52,13 +53,14 @@
 						/> </retryable-exception-classes> -->
 				</chunk>
 				<listeners>
-					<listener ref="extraApplyItemsListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 	</job>
-	<bean:bean id="ApplyItemsListener" class="therapy.applyitems.SkipApplyItems" />
-	<bean:bean id="extraApplyItemsListener" class="therapy.applyitems.SkipExtraApplyItems" />
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
 	<!-- 作业配置结束 -->
 
 	<!-- 参数化读取db开始 -->
@@ -112,7 +114,8 @@
 		class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<bean:property name="dataSource" ref="dataSource_in" />
 		<bean:property name="sql"
-			value="select *  from THERAPY_APPLY_ITEMS where (THERAPY_APPLY_ITEMS.EXTRA_MARK is not null and THERAPY_APPLY_ITEMS.EXTRA_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and THERAPY_APPLY_ITEMS.EXTRA_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" />
+			value="select THERAPY_APPLY_ITEMS.THERAPY_ID,THERAPY_APPLY_ITEMS.SQNO,THERAPY_APPLY_ITEMS.ITEM_TYPE,THERAPY_APPLY_ITEMS.ITEM_CODE,THERAPY_APPLY_ITEMS.ITEM_NUM,THERAPY_APPLY_ITEMS.ITEM_NAME,THERAPY_APPLY_ITEMS.AMOUNT_UNIT,THERAPY_APPLY_ITEMS.EXTRA_MARK,THERAPY_APPLY_ITEMS.EXTRA_DATE,THERAPY_APPLY_ITEMS.EXTRA_EMP,THERAPY_APPLY_ITEMS.EXTRA_EMP_NAME,THERAPY_APPLY_ITEMS.CHARGE_MARK,THERAPY_APPLY_ITEMS.TOTAL_AMOUNT,THERAPY_APPLY_ITEMS.TOTAL_AMOUNT_UNIT,THERAPY_APPLY_ITEMS.FREQ_CODE,THERAPY_APPLY_ITEMS.ROUTE,THERAPY_APPLY_ITEMS.INSURANCE_TYPE,THERAPY_APPLY_ITEMS.DOSE,THERAPY_APPLY_ITEMS.DOSE_UNIT,THERAPY_APPLY_ITEMS.PLAN_DAYS  from THERAPY_MASTER,THERAPY_APPLY_ITEMS where (THERAPY_APPLY_ITEMS.THERAPY_ID=THERAPY_MASTER.THERAPY_ID and THERAPY_APPLY_ITEMS.EXTRA_DATE is not null and THERAPY_MASTER.ORDER_TIME &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and THERAPY_MASTER.ORDER_TIME &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" />
+			<!-- value="select *  from THERAPY_APPLY_ITEMS where (THERAPY_APPLY_ITEMS.EXTRA_MARK is not null and THERAPY_APPLY_ITEMS.EXTRA_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and THERAPY_APPLY_ITEMS.EXTRA_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" /> -->
 		<bean:property name="rowMapper">
 			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
 				<bean:property name="mappedClass"

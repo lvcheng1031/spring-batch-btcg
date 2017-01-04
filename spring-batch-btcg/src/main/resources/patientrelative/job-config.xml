@@ -26,8 +26,8 @@
 		<step id="patientrelativeStep">
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readPMIContactToPatientRelative" processor="processorPMIContactToPatientRelative"
-					writer="writePMIContactToPatientRelative" commit-interval="50"
-					skip-limit="10000000">
+					writer="writePMIContactToPatientRelative" commit-interval="5000"
+					skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="exception.MySkipableException" />
 						<include class="java.lang.Exception" />
@@ -37,13 +37,14 @@
 					</skippable-exception-classes>
 				</chunk>
 				<listeners>
-					<listener ref="patientrelativeStepSkipListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 	</job>
-	<bean:bean id="patientrelativeStepSkipListener"
-		class="patientrelative.SkipListenerPMIContactToPatientRelative" />
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
 	<!-- 作业配置结束 -->
 
 
@@ -52,7 +53,7 @@
 		class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<bean:property name="dataSource" ref="dataSource_in" />
 		<bean:property name="sql"
-			value="select * from PMI_CONTACT where ( MODIFY_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and MODIFY_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')) and ACTIVE_FLAG='Y'" />
+			value="select PATIENT_ID,CONTACT_NAME,max(RELATION) as RELATION ,max(MODIFY_DATE) as MODIFY_DATE from PMI_CONTACT where ( MODIFY_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and MODIFY_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTIVE_FLAG='Y' and RELATION is not null and RELATION !='本人' and CONTACT_NAME is not null) group by PATIENT_ID,CONTACT_NAME" />
 		<bean:property name="rowMapper">
 			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
 				<bean:property name="mappedClass" value="patientmaster.contact.PMIContact" />
@@ -84,7 +85,7 @@
 		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
 		<bean:property name="dataSource" ref="dataSource_out" />
 		<bean:property name="sql"
-			value="insert into PATIENT_RELATIVE(PATIENT_ID,RELATIVE_ID,RELATION) values(:patient_id,:contact_name,:relation)" />
+			value="insert into PATIENT_RELATIVE(PATIENT_ID,RELATIVE_ID,RELATION,MODIFY_DATE) values(:patient_id,:contact_name,:relation,to_date(:modify_date,'yyyy-MM-dd HH24:mi:ss'))" />
 		<bean:property name="itemSqlParameterSourceProvider">
 			<bean:bean
 				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />

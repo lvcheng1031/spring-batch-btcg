@@ -10,8 +10,8 @@ import exception.MySkipableException;
 
 public class ProcessorEnterpriseMasterPatientIndex
 		implements ItemProcessor<EnterpriseMasterPatientIndex, EnterpriseMasterPatientIndex> {
-	public EnterpriseMasterPatientIndex process(EnterpriseMasterPatientIndex in) throws SQLException {
-		//System.out.println(in.toString());
+	public EnterpriseMasterPatientIndex process(EnterpriseMasterPatientIndex in) throws Exception {
+//		System.out.println("1"+in.getPatient_id());
 		EnterpriseMasterPatientIndex out=new EnterpriseMasterPatientIndex(in);
 		out.setEducation_level(GetMapCodeTrans.getCode(in.getEducation_level(), "MASTER_PATIENT_INDEX", "EDUCATIONAL_LEVEL_ID", "CASE_OBJECT_ID", in.getPatient_id()));
 		out.setMarital_status(GetMapCodeTrans.getCode(in.getMarital_status(), "MASTER_PATIENT_INDEX", "MARRIAGE_TYPE", "CASE_OBJECT_ID", in.getPatient_id()));

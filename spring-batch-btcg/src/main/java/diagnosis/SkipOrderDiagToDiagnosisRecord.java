@@ -5,7 +5,6 @@ import org.springframework.batch.core.SkipListener;
 import org.springframework.dao.DuplicateKeyException;
 
 import exception.MySkipableException;
-import schedule.SchedulerLauncher;
 
 public class SkipOrderDiagToDiagnosisRecord implements SkipListener<BeanSourceOrderDiag,BeanTargetDiagnosisRecord>{
 	Logger logger=Logger.getLogger(SkipOrderDiagToDiagnosisRecord.class);

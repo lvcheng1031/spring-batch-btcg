@@ -27,7 +27,7 @@
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readPrescriptionMaster"
 					processor="processorPrescriptionMasterToPrescriptionRecord" writer="writePrescriptionRecord"
-					commit-interval="50" skip-limit="100000000">
+					commit-interval="5000" skip-limit="100000000">
 					<skippable-exception-classes>
 						<include class="java.lang.Exception" />
 						<include class="org.springframework.dao.DataIntegrityViolationException" />
@@ -36,7 +36,8 @@
 					</skippable-exception-classes>
 				</chunk>
 				<listeners>
-					<listener ref="masterStepSkipListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
@@ -44,8 +45,14 @@
 			<tasklet transaction-manager="transactionManager">
 				<chunk reader="readPrescriptionDetails"
 					processor="processorPrescriptionDetailsToPrescriptionDetialRecord"
-					writer="writePrescriptionDetialRecord" commit-interval="50"
+					writer="writePrescriptionDetialRecord" commit-interval="5000"
 					skip-limit="100000000">
+					<!-- <no-rollback-exception-classes>
+        				 <include class="java.lang.Exception"/>
+      				</no-rollback-exception-classes> -->
+					<!-- <retryable-exception-classes>
+           				 <include class="java.io.FileNotFoundException"/>
+         			</retryable-exception-classes> -->
 					<skippable-exception-classes>
 						<include class="java.lang.Exception" />
 						<!-- <include class="org.springframework.dao.DataIntegrityViolationException"/> -->
@@ -54,16 +61,15 @@
 					</skippable-exception-classes>
 				</chunk>
 				<listeners>
-					<listener ref="detailStepSkipListener" />
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
 				</listeners>
 			</tasklet>
 		</step>
 
 	</job>
-	<bean:bean id="masterStepSkipListener"
-		class="prescription.SkipPrescriptionMasterToPrescriptionRecord" />
-	<bean:bean id="detailStepSkipListener"
-		class="prescription.SkipPrescriptionDetailsToPrescriptionDetialRecord" />
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
 	<!-- 作业配置结束 -->
 
 

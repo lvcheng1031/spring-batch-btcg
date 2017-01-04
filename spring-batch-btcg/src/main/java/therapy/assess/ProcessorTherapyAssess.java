@@ -7,7 +7,7 @@ public class ProcessorTherapyAssess implements ItemProcessor<BeanTherapyAssess, 
 	@Override
 	public BeanTherapyAssess process(BeanTherapyAssess in) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(in.getASSESS_NO());
+//		System.out.println(in.getASSESS_NO());
 		return in;
 	}
 	

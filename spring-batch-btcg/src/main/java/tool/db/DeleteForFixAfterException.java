@@ -80,11 +80,12 @@ public class DeleteForFixAfterException {
 		ps.setString(2, cu_date);
 		ps.execute();
 		
-		sql="delete from THERAPY_ITEMS where THERAPY_VISIT_ID in(select THERAPY_VISIT_ID from THERAPY_ADMINISTER where CHECKIN_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CHECKIN_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
+		sql="delete from THERAPY_ITEMS where ( ACTION_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTION_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, last_date);
 		ps.setString(2, cu_date);
 		ps.execute();
+		
 		sql="delete from THERAPY_MATERIAL where THERAPY_VISIT_ID in(select THERAPY_VISIT_ID from THERAPY_ADMINISTER where CHECKIN_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CHECKIN_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, last_date);

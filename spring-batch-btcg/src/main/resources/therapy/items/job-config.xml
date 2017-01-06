@@ -48,8 +48,8 @@
 		class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<bean:property name="dataSource" ref="dataSource_in" />
 		<bean:property name="sql"
-			value="select * from THERAPY_ITEMS where THERAPY_VISIT_ID in ( select THERAPY_VISIT_ID from THERAPY_ADMINISTER where ( CHECKIN_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CHECKIN_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')))" />
-			<!-- value="select * from THERAPY_ITEMS where ( ACTION_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTION_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss'))" /> -->
+			value="select * from THERAPY_ITEMS where ACTION_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTION_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')" />
+			<!-- value="select * from THERAPY_ITEMS where THERAPY_VISIT_ID in ( select THERAPY_VISIT_ID from THERAPY_ADMINISTER where ( CHECKIN_DATE &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and CHECKIN_DATE &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')))" /> -->
 		<bean:property name="rowMapper">
 			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
 				<bean:property name="mappedClass" value="therapy.items.BeanTherapyItems" />

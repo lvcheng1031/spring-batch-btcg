@@ -52,12 +52,11 @@ public class SchedulerLauncher {
 		String sql="";
 		PreparedStatement ps=null;
 		
-		sql="delete from VISIT_RECORD where VISIT_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and VISIT_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss')";
+		sql="delete from THERAPY_ITEMS where ( ACTION_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTION_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, last_date);
 		ps.setString(2, cu_date);
-//		ps.execute();
-		logger.warn("相应时间段的就诊记录已清空");
+		ps.execute();
 		
 		Whole.completeCount=0;
 		Whole.skipCount=0;

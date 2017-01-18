@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<!-- 外部文件导入开始 -->
+	<bean:import resource="classpath:job-context.xml" />
+	<!-- 外部文件导入结束 -->
+
+	<!-- 作业配置开始 -->
+	<job id="anesthesiaRecordJob">
+		<step id="anesthesiaRecordStep">
+			<tasklet transaction-manager="transactionManager">
+				<chunk reader="read" processor="processor"
+					writer="write" commit-interval="5000" skip-limit="100000000">
+					<skippable-exception-classes>
+						<include class="exception.MySkipableException" />
+						<include class="java.lang.Exception" />
+						<!-- <include class="org.springframework.dao.DataIntegrityViolationException"/> 
+							<include class="org.springframework.dao.DuplicateKeyException"/> -->
+						<!-- <exclude class="java.io.FileNotFoundException"/> -->
+					</skippable-exception-classes>
+					<!-- <retryable-exception-classes> <include class="java.net.NoRouteToHostException" 
+						/> </retryable-exception-classes> -->
+				</chunk>
+				<listeners>
+					<listener ref="mySkipListener" />
+					<listener ref="chunkListener" />
+				</listeners>
+			</tasklet>
+		</step>
+	</job>
+	<bean:bean id="mySkipListener" class="listener.MySkipListener" />
+	<bean:bean id="chunkListener" class="listener.MyChunkListener" />
+	<!-- 作业配置结束 -->
+
+	<!-- 参数化读取db开始 -->
+	<bean:bean id="read" scope="step"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<bean:property name="dataSource" ref="dataSource_in_ma" />
+		<bean:property name="sql"
+			value="select MED_OPERATION_MASTER.PATIENT_ID,MED_OPERATION_MASTER.VISIT_ID,MED_OPERATION_MASTER.OPER_ID,MED_OPERATION_MASTER.RESERVED5,MED_OPERATION_MASTER.ANESTHESIA_METHOD,MED_OPERATION_MASTER.ANESTHESIA_DOCTOR,MED_ANESTHESIA_PLAN.ANES_START_TIME,MED_ANESTHESIA_PLAN.ANES_END_TIME,MED_ANESTHESIA_PLAN.ASA_GRADE,MED_OPERATION_MASTER.OPERATION_POSITION,MED_ANESTHESIA_PLAN.PRE_ANES_PHAM,MED_ANESTHESIA_PLAN.WEIGHT,MED_ANESTHESIA_PLAN.ENTER_DATE_TIME,MED_OPERATION_MASTER.IN_DATE_TIME,MED_OPERATION_MASTER.OUT_DATE_TIME,SCHEDULED_DATE_TIME  from MED_ANESTHESIA_PLAN,MED_OPERATION_MASTER where MED_OPERATION_MASTER.PATIENT_ID= MED_ANESTHESIA_PLAN.PATIENT_ID and MED_OPERATION_MASTER.VISIT_ID = MED_ANESTHESIA_PLAN.VISIT_ID and MED_OPERATION_MASTER.OPER_ID = MED_ANESTHESIA_PLAN.OPER_ID  and MED_OPERATION_MASTER.SCHEDULED_DATE_TIME &gt;= to_date(?,'yyyy-MM-dd HH24:mi:ss') and MED_OPERATION_MASTER.SCHEDULED_DATE_TIME &lt; to_date(?,'yyyy-MM-dd HH24:mi:ss')" />
+		<bean:property name="rowMapper">
+			<bean:bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
+				<bean:property name="mappedClass"
+					value="anesthesia.record.BeanSource" />
+			</bean:bean>
+		</bean:property>
+		<bean:property name="preparedStatementSetter" ref="paramStatementSetter" />
+	</bean:bean>
+
+	<bean:bean id="paramStatementSetter" scope="step"
+		class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+		<bean:property name="parameters">
+			<bean:list>
+				<bean:value>#{jobParameters['last_date']}</bean:value>
+				<bean:value>#{jobParameters['cu_date']}</bean:value>
+			</bean:list>
+		</bean:property>
+	</bean:bean>
+
+	<!-- End参数化读取db结束 -->
+
+	<!-- 处理器配置开始 -->
+	<bean:bean id="processor" scope="step"
+		class="anesthesia.record.Processor">
+	</bean:bean>
+	<!-- 处理器配置结束 -->
+
+	<!-- 写数据库配置开始 -->
+	<bean:bean id="write"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<bean:property name="dataSource" ref="dataSource_out" />
+		<bean:property name="sql"
+			value="insert into ANESTHESIA_RECORD(ANESTHESIA_ID,OPERATION_ID,CASE_OBJECT_ID,ANESTHESIA_METHODS,ANAESTHETIST_ID,ANESTHESIA_BEGIN,ANESTHESIA_END,ASA_LEVEL_CD,SPILE_SORT,ANESTHESIA_POSTURE,BREATHE_TYPE_CD,ANESTHESIA_DESCRIBE,ANESTHESIA_COMPL_CD,PUNCTURE_SORT_CD,PUNCTURE_PROC,ANESTHESIA_EFFECT,PREANAESTHETIC_MEDICINE,WEIGHT,TEMPERATURE,PULSE,BREATHE_RATE,SYSTOLIC_PRESSURE,DIASTOLIC_PRESSURE,ENTER_DATE_TIME,IN_DATE_TIME,OUT_DATE_TIME,SCHEDULED_DATE_TIME) values(:ANESTHESIA_ID,:OPERATION_ID,:CASE_OBJECT_ID,:ANESTHESIA_METHODS,:ANAESTHETIST_ID,to_date(:ANESTHESIA_BEGIN,'yyyy-MM-dd HH24:mi:ss'),to_date(:ANESTHESIA_END,'yyyy-MM-dd HH24:mi:ss'),:ASA_LEVEL_CD,:SPILE_SORT,:ANESTHESIA_POSTURE,:BREATHE_TYPE_CD,:ANESTHESIA_DESCRIBE,:ANESTHESIA_COMPL_CD,:PUNCTURE_SORT_CD,:PUNCTURE_PROC,:ANESTHESIA_EFFECT,:PREANAESTHETIC_MEDICINE,:WEIGHT,:TEMPERATURE,:PULSE,:BREATHE_RATE,:SYSTOLIC_PRESSURE,:DIASTOLIC_PRESSURE,to_date(:ENTER_DATE_TIME,'yyyy-MM-dd HH24:mi:ss'),to_date(:IN_DATE_TIME,'yyyy-MM-dd HH24:mi:ss'),to_date(:OUT_DATE_TIME,'yyyy-MM-dd HH24:mi:ss'),to_date(:SCHEDULED_DATE_TIME,'yyyy-MM-dd HH24:mi:ss'))" />
+		<bean:property name="itemSqlParameterSourceProvider">
+			<bean:bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</bean:property>
+	</bean:bean>
+	<!-- 写数据库配置结束 -->
+
+</bean:beans>

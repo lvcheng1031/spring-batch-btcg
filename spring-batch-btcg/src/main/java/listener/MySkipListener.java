@@ -22,6 +22,10 @@ public class MySkipListener implements SkipListener<Object,Object>{
 	@Override
 	public void onSkipInWrite(Object item, Throwable t) {
 //		logger.warn("write**********"+Whole.skipCount+t.toString());
+//		if(t instanceof DuplicateKeyException){
+//			System.out.println(t.getMessage()+"***********"+item.toString());
+//		}
+//		System.out.println();
 		if(!(t instanceof MySkipableException ||t instanceof DuplicateKeyException)){
 			logger.warn(t.toString()+"----->"+item.toString());
 			ifExit();

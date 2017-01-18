@@ -20,6 +20,11 @@ import tool.db.DeleteForFixAfterException;
 import variable.Whole;
 
 public class SchedulerLauncher {
+	public static void main(String[] args) {
+		SchedulerLauncher ins=new SchedulerLauncher();
+		ins.last_date="1900-1-1";
+		ins.launch();
+	}
 	String last_date;
 	String cu_date;
 	String jobId;
@@ -50,97 +55,137 @@ public class SchedulerLauncher {
 		
 		DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(last_date, cu_date);
 		
-		jobId="masterindexJob";
-		jobName="病人基本信息作业";
-		jobConfigPath="patientmaster/job-config.xml";
+//		jobId="masterindexJob";
+//		jobName="病人基本信息作业";
+//		jobConfigPath="patientmaster/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="patientrelativeJob";
+//		jobName="病人亲属信息作业";
+//		jobConfigPath="patientrelative/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="regVisitMasterToVisitRecordJob";
+//		jobName="就诊记录（门急）作业";
+//		jobConfigPath="visitrecord/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="visitrecordadmJob";
+//		jobName="就诊记录（住院）作业";
+//		jobConfigPath="visitrecord/adm/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="prescriptionJob";
+//		jobName="用药作业";
+//		jobConfigPath="prescription/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="diagnosisJob";
+//		jobName="诊断作业";
+//		jobConfigPath="diagnosis/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapymasterJob";
+//		jobName="治疗主记录作业";
+//		jobConfigPath="therapy/master/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapyapplyitemsJob";
+//		jobName="治疗申请项目记录作业";
+//		jobConfigPath="therapy/applyitems/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapyAdministerJob";
+//		jobName="治疗执行记录作业";
+//		jobConfigPath="therapy/administer/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapyItemsJob";
+//		jobName="治疗记录项目信息作业";
+//		jobConfigPath="therapy/items/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapyMaterialJob";
+//		jobName="治疗耗材记录作业";
+//		jobConfigPath="therapy/material/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+//		
+//		jobId="therapyAssessJob";
+//		jobName="治疗评估记录作业";
+//		jobConfigPath="therapy/assess/job-config.xml";
+//		Whole.completeCount=0;
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
+//		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
+//		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
+		
+		jobId="opRecordJob";
+		jobName="手术主记录作业";
+		jobConfigPath="op/record/job-config.xml";
 		Whole.completeCount=0;
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
 		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
 		
-		jobId="patientrelativeJob";
-		jobName="病人亲属信息作业";
-		jobConfigPath="patientrelative/job-config.xml";
+		jobId="opOperationJob";
+		jobName="手术操作记录作业";
+		jobConfigPath="op/operation/job-config.xml";
 		Whole.completeCount=0;
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
 		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
 		
-		jobId="regVisitMasterToVisitRecordJob";
-		jobName="就诊记录（门急）作业";
-		jobConfigPath="visitrecord/job-config.xml";
+		jobId="opMaterialJob";
+		jobName="手术材料使用记录作业";
+		jobConfigPath="op/material/job-config.xml";
 		Whole.completeCount=0;
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
 		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
 		
-		jobId="visitrecordadmJob";
-		jobName="就诊记录（住院）作业";
-		jobConfigPath="visitrecord/adm/job-config.xml";
+		jobId="anesthesiaRecordJob";
+		jobName="麻醉记录作业";
+		jobConfigPath="anesthesia/record/job-config.xml";
 		Whole.completeCount=0;
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
 		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
 		
-		jobId="prescriptionJob";
-		jobName="用药作业";
-		jobConfigPath="prescription/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="diagnosisJob";
-		jobName="诊断作业";
-		jobConfigPath="diagnosis/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapymasterJob";
-		jobName="治疗主记录作业";
-		jobConfigPath="therapy/master/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapyapplyitemsJob";
-		jobName="治疗申请项目记录作业";
-		jobConfigPath="therapy/applyitems/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapyAdministerJob";
-		jobName="治疗执行记录作业";
-		jobConfigPath="therapy/administer/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapyItemsJob";
-		jobName="治疗记录项目信息作业";
-		jobConfigPath="therapy/items/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapyMaterialJob";
-		jobName="治疗耗材记录作业";
-		jobConfigPath="therapy/material/job-config.xml";
-		Whole.completeCount=0;
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
-		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));
-		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"完毕");
-		
-		jobId="therapyAssessJob";
-		jobName="治疗评估记录作业";
-		jobConfigPath="therapy/assess/job-config.xml";
+		jobId="anaestheticJob";
+		jobName="麻醉药物使用记录作业";
+		jobConfigPath="anesthesia/anaesthetic/job-config.xml";
 		Whole.completeCount=0;
 		logger.warn("[ "+last_date+" - "+cu_date+" ) "+":"+jobName+"开始");
 		executeJob(jobConfigPath, jobId,new JobParametersBuilder().addDate("date", new Date()).addString("id", "1").addString("last_date", last_date).addString("cu_date", cu_date));

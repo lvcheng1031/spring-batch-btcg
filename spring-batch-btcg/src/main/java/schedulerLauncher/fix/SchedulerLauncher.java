@@ -52,7 +52,7 @@ public class SchedulerLauncher {
 		String sql="";
 		PreparedStatement ps=null;
 		
-		sql="delete from THERAPY_ITEMS where ( ACTION_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and ACTION_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
+		sql="delete from OPERATION_OPERATE_RECORD where ( INPUT_DATE >= to_date(?,'yyyy-MM-dd HH24:mi:ss') and INPUT_DATE < to_date(?,'yyyy-MM-dd HH24:mi:ss'))";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, last_date);
 		ps.setString(2, cu_date);

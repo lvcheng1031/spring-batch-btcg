@@ -1,95 +1,101 @@
-2017-01-05 13:44:59 WARN java.sql.SQLSyntaxErrorException: ORA-00920: invalid relational operator
- -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:68) SchedulerLauncher.java  
-2017-01-05 13:47:40 WARN java.sql.SQLSyntaxErrorException: ORA-00920: invalid relational operator
- -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:68) SchedulerLauncher.java  
-2017-01-05 13:48:33 WARN java.sql.SQLSyntaxErrorException: ORA-00920: invalid relational operator
- -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:68) SchedulerLauncher.java  
-2017-01-05 13:50:19 WARN java.sql.SQLSyntaxErrorException: ORA-00920: invalid relational operator
- -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:68) SchedulerLauncher.java  
-2017-01-05 13:54:36 WARN [ 1900-1-4 00:00:00 - 2018-1-4 00:00:00 ) :治疗记录项目信息作业开始 -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:63) SchedulerLauncher.java  
-2017-01-05 13:54:41 WARN therapyItemsStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:42 WARN therapyItemsStep : 累计读取 10000 条记录,跳过  0 条记录,写入  10000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:43 WARN therapyItemsStep : 累计读取 15000 条记录,跳过  0 条记录,写入  15000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:45 WARN therapyItemsStep : 累计读取 20000 条记录,跳过  0 条记录,写入  20000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:46 WARN therapyItemsStep : 累计读取 25000 条记录,跳过  0 条记录,写入  25000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:47 WARN therapyItemsStep : 累计读取 30000 条记录,跳过  0 条记录,写入  30000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:48 WARN therapyItemsStep : 累计读取 35000 条记录,跳过  0 条记录,写入  35000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:49 WARN therapyItemsStep : 累计读取 40000 条记录,跳过  0 条记录,写入  40000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:51 WARN therapyItemsStep : 累计读取 45000 条记录,跳过  0 条记录,写入  45000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:52 WARN therapyItemsStep : 累计读取 50000 条记录,跳过  0 条记录,写入  50000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:53 WARN therapyItemsStep : 累计读取 55000 条记录,跳过  0 条记录,写入  55000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:54 WARN therapyItemsStep : 累计读取 60000 条记录,跳过  0 条记录,写入  60000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:55 WARN therapyItemsStep : 累计读取 65000 条记录,跳过  0 条记录,写入  65000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:57 WARN therapyItemsStep : 累计读取 70000 条记录,跳过  0 条记录,写入  70000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:54:58 WARN therapyItemsStep : 累计读取 75000 条记录,跳过  0 条记录,写入  75000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:02 WARN therapyItemsStep : 累计读取 80000 条记录,跳过  0 条记录,写入  80000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:03 WARN therapyItemsStep : 累计读取 85000 条记录,跳过  0 条记录,写入  85000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:04 WARN therapyItemsStep : 累计读取 90000 条记录,跳过  0 条记录,写入  90000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:05 WARN therapyItemsStep : 累计读取 95000 条记录,跳过  0 条记录,写入  95000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:06 WARN therapyItemsStep : 累计读取 100000 条记录,跳过  0 条记录,写入  100000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:08 WARN therapyItemsStep : 累计读取 105000 条记录,跳过  0 条记录,写入  105000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:09 WARN therapyItemsStep : 累计读取 110000 条记录,跳过  0 条记录,写入  110000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:10 WARN therapyItemsStep : 累计读取 115000 条记录,跳过  0 条记录,写入  115000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:11 WARN therapyItemsStep : 累计读取 120000 条记录,跳过  0 条记录,写入  120000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:12 WARN therapyItemsStep : 累计读取 125000 条记录,跳过  0 条记录,写入  125000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:14 WARN therapyItemsStep : 累计读取 130000 条记录,跳过  0 条记录,写入  130000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:15 WARN therapyItemsStep : 累计读取 135000 条记录,跳过  0 条记录,写入  135000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:16 WARN therapyItemsStep : 累计读取 140000 条记录,跳过  0 条记录,写入  140000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:17 WARN therapyItemsStep : 累计读取 145000 条记录,跳过  0 条记录,写入  145000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:19 WARN therapyItemsStep : 累计读取 150000 条记录,跳过  0 条记录,写入  150000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:20 WARN therapyItemsStep : 累计读取 155000 条记录,跳过  0 条记录,写入  155000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:21 WARN therapyItemsStep : 累计读取 160000 条记录,跳过  0 条记录,写入  160000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:22 WARN therapyItemsStep : 累计读取 165000 条记录,跳过  0 条记录,写入  165000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:24 WARN therapyItemsStep : 累计读取 170000 条记录,跳过  0 条记录,写入  170000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:25 WARN therapyItemsStep : 累计读取 175000 条记录,跳过  0 条记录,写入  175000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:26 WARN therapyItemsStep : 累计读取 180000 条记录,跳过  0 条记录,写入  180000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:28 WARN therapyItemsStep : 累计读取 185000 条记录,跳过  0 条记录,写入  185000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:29 WARN therapyItemsStep : 累计读取 190000 条记录,跳过  0 条记录,写入  190000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:30 WARN therapyItemsStep : 累计读取 195000 条记录,跳过  0 条记录,写入  195000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:31 WARN therapyItemsStep : 累计读取 200000 条记录,跳过  0 条记录,写入  200000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:32 WARN therapyItemsStep : 累计读取 205000 条记录,跳过  0 条记录,写入  205000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:34 WARN therapyItemsStep : 累计读取 210000 条记录,跳过  0 条记录,写入  210000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:35 WARN therapyItemsStep : 累计读取 215000 条记录,跳过  0 条记录,写入  215000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:38 WARN therapyItemsStep : 累计读取 220000 条记录,跳过  0 条记录,写入  220000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:39 WARN therapyItemsStep : 累计读取 225000 条记录,跳过  0 条记录,写入  225000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:40 WARN therapyItemsStep : 累计读取 230000 条记录,跳过  0 条记录,写入  230000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:41 WARN therapyItemsStep : 累计读取 235000 条记录,跳过  0 条记录,写入  235000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:42 WARN therapyItemsStep : 累计读取 240000 条记录,跳过  0 条记录,写入  240000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:44 WARN therapyItemsStep : 累计读取 245000 条记录,跳过  0 条记录,写入  245000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:45 WARN therapyItemsStep : 累计读取 250000 条记录,跳过  0 条记录,写入  250000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:46 WARN therapyItemsStep : 累计读取 255000 条记录,跳过  0 条记录,写入  255000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:47 WARN therapyItemsStep : 累计读取 260000 条记录,跳过  0 条记录,写入  260000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:48 WARN therapyItemsStep : 累计读取 265000 条记录,跳过  0 条记录,写入  265000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:50 WARN therapyItemsStep : 累计读取 270000 条记录,跳过  0 条记录,写入  270000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:51 WARN therapyItemsStep : 累计读取 275000 条记录,跳过  0 条记录,写入  275000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:52 WARN therapyItemsStep : 累计读取 280000 条记录,跳过  0 条记录,写入  280000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:53 WARN therapyItemsStep : 累计读取 285000 条记录,跳过  0 条记录,写入  285000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:55 WARN therapyItemsStep : 累计读取 290000 条记录,跳过  0 条记录,写入  290000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:56 WARN therapyItemsStep : 累计读取 295000 条记录,跳过  0 条记录,写入  295000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:57 WARN therapyItemsStep : 累计读取 300000 条记录,跳过  0 条记录,写入  300000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:58 WARN therapyItemsStep : 累计读取 305000 条记录,跳过  0 条记录,写入  305000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:55:59 WARN therapyItemsStep : 累计读取 310000 条记录,跳过  0 条记录,写入  310000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:01 WARN therapyItemsStep : 累计读取 315000 条记录,跳过  0 条记录,写入  315000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:02 WARN therapyItemsStep : 累计读取 320000 条记录,跳过  0 条记录,写入  320000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:03 WARN therapyItemsStep : 累计读取 325000 条记录,跳过  0 条记录,写入  325000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:04 WARN therapyItemsStep : 累计读取 330000 条记录,跳过  0 条记录,写入  330000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:05 WARN therapyItemsStep : 累计读取 335000 条记录,跳过  0 条记录,写入  335000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:06 WARN therapyItemsStep : 累计读取 340000 条记录,跳过  0 条记录,写入  340000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:08 WARN therapyItemsStep : 累计读取 345000 条记录,跳过  0 条记录,写入  345000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:09 WARN therapyItemsStep : 累计读取 350000 条记录,跳过  0 条记录,写入  350000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:10 WARN therapyItemsStep : 累计读取 355000 条记录,跳过  0 条记录,写入  355000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:11 WARN therapyItemsStep : 累计读取 360000 条记录,跳过  0 条记录,写入  360000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:12 WARN therapyItemsStep : 累计读取 365000 条记录,跳过  0 条记录,写入  365000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:14 WARN therapyItemsStep : 累计读取 370000 条记录,跳过  0 条记录,写入  370000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:15 WARN therapyItemsStep : 累计读取 375000 条记录,跳过  0 条记录,写入  375000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:16 WARN therapyItemsStep : 累计读取 380000 条记录,跳过  0 条记录,写入  380000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:17 WARN therapyItemsStep : 累计读取 385000 条记录,跳过  0 条记录,写入  385000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:19 WARN therapyItemsStep : 累计读取 390000 条记录,跳过  0 条记录,写入  390000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:20 WARN therapyItemsStep : 累计读取 395000 条记录,跳过  0 条记录,写入  395000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:21 WARN therapyItemsStep : 累计读取 400000 条记录,跳过  0 条记录,写入  400000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:22 WARN therapyItemsStep : 累计读取 405000 条记录,跳过  0 条记录,写入  405000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:23 WARN therapyItemsStep : 累计读取 410000 条记录,跳过  0 条记录,写入  410000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:24 WARN therapyItemsStep : 累计读取 415000 条记录,跳过  0 条记录,写入  415000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:26 WARN therapyItemsStep : 累计读取 420000 条记录,跳过  0 条记录,写入  420000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:29 WARN therapyItemsStep : 累计读取 423022 条记录,跳过  0 条记录,写入  423022 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
-2017-01-05 13:56:29 WARN [ 1900-1-4 00:00:00 - 2018-1-4 00:00:00 ) :治疗记录项目信息作业完毕 -----> schedulerLauncher.fix.SchedulerLauncher.launch(SchedulerLauncher.java:65) SchedulerLauncher.java  
+2017-01-18 11:06:59 WARN 相应时间段的手术信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:126) DeleteForFixAfterException.java  
+2017-01-18 11:07:01 WARN 相应时间段的麻醉信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:140) DeleteForFixAfterException.java  
+2017-01-18 11:07:01 WARN 清空完毕 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:142) DeleteForFixAfterException.java  
+2017-01-18 11:07:01 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术主记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:158) SchedulerLauncher.java  
+2017-01-18 11:07:05 WARN opRecordStep : 累计读取 50 条记录,跳过  0 条记录,写入  50 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:05 WARN opRecordStep : 累计读取 100 条记录,跳过  0 条记录,写入  100 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:05 WARN opRecordStep : 累计读取 150 条记录,跳过  0 条记录,写入  150 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:05 WARN opRecordStep : 累计读取 200 条记录,跳过  0 条记录,写入  200 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:05 WARN opRecordStep : 累计读取 250 条记录,跳过  0 条记录,写入  250 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 300 条记录,跳过  0 条记录,写入  300 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 350 条记录,跳过  0 条记录,写入  350 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 400 条记录,跳过  0 条记录,写入  400 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 450 条记录,跳过  0 条记录,写入  450 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 500 条记录,跳过  0 条记录,写入  500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 550 条记录,跳过  0 条记录,写入  550 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:06 WARN opRecordStep : 累计读取 600 条记录,跳过  0 条记录,写入  600 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:07 WARN opRecordStep : 累计读取 650 条记录,跳过  0 条记录,写入  650 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:07 WARN opRecordStep : 累计读取 700 条记录,跳过  0 条记录,写入  700 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:07 WARN opRecordStep : 累计读取 750 条记录,跳过  0 条记录,写入  750 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:07 WARN opRecordStep : 累计读取 773 条记录,跳过  0 条记录,写入  773 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:07 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术主记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:160) SchedulerLauncher.java  
+2017-01-18 11:07:07 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术操作记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:166) SchedulerLauncher.java  
+2017-01-18 11:07:08 WARN opOperationStep : 累计读取 0 条记录,跳过  0 条记录,写入  0 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:09 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术操作记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:168) SchedulerLauncher.java  
+2017-01-18 11:07:09 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术材料使用记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:174) SchedulerLauncher.java  
+2017-01-18 11:07:11 WARN opMaterialStep : 累计读取 50 条记录,跳过  0 条记录,写入  50 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:11 WARN opMaterialStep : 累计读取 94 条记录,跳过  0 条记录,写入  94 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:11 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术材料使用记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:176) SchedulerLauncher.java  
+2017-01-18 11:07:11 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:182) SchedulerLauncher.java  
+2017-01-18 11:07:13 WARN anesthesiaRecordStep : 累计读取 500 条记录,跳过  0 条记录,写入  500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:13 WARN anesthesiaRecordStep : 累计读取 1000 条记录,跳过  0 条记录,写入  1000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:13 WARN anesthesiaRecordStep : 累计读取 1500 条记录,跳过  0 条记录,写入  1500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:13 WARN anesthesiaRecordStep : 累计读取 2000 条记录,跳过  0 条记录,写入  2000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:14 WARN anesthesiaRecordStep : 累计读取 2500 条记录,跳过  0 条记录,写入  2500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:14 WARN anesthesiaRecordStep : 累计读取 3000 条记录,跳过  0 条记录,写入  3000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:14 WARN anesthesiaRecordStep : 累计读取 3500 条记录,跳过  0 条记录,写入  3500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:15 WARN anesthesiaRecordStep : 累计读取 4000 条记录,跳过  0 条记录,写入  4000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:15 WARN anesthesiaRecordStep : 累计读取 4500 条记录,跳过  0 条记录,写入  4500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:15 WARN anesthesiaRecordStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:15 WARN anesthesiaRecordStep : 累计读取 5500 条记录,跳过  0 条记录,写入  5500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:16 WARN anesthesiaRecordStep : 累计读取 6000 条记录,跳过  0 条记录,写入  6000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:16 WARN anesthesiaRecordStep : 累计读取 6500 条记录,跳过  0 条记录,写入  6500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:16 WARN anesthesiaRecordStep : 累计读取 7000 条记录,跳过  0 条记录,写入  7000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:17 WARN anesthesiaRecordStep : 累计读取 7500 条记录,跳过  0 条记录,写入  7500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:17 WARN anesthesiaRecordStep : 累计读取 8000 条记录,跳过  0 条记录,写入  8000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:17 WARN anesthesiaRecordStep : 累计读取 8500 条记录,跳过  0 条记录,写入  8500 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:17 WARN anesthesiaRecordStep : 累计读取 9000 条记录,跳过  0 条记录,写入  9000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:18 WARN anesthesiaRecordStep : 累计读取 9431 条记录,跳过  0 条记录,写入  9431 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:18 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:184) SchedulerLauncher.java  
+2017-01-18 11:07:18 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉药物使用记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:190) SchedulerLauncher.java  
+2017-01-18 11:07:20 WARN anaestheticStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:21 WARN anaestheticStep : 累计读取 10000 条记录,跳过  0 条记录,写入  10000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:22 WARN anaestheticStep : 累计读取 15000 条记录,跳过  0 条记录,写入  15000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:23 WARN anaestheticStep : 累计读取 20000 条记录,跳过  0 条记录,写入  20000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:25 WARN anaestheticStep : 累计读取 25000 条记录,跳过  0 条记录,写入  25000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:26 WARN anaestheticStep : 累计读取 30000 条记录,跳过  0 条记录,写入  30000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:31 WARN anaestheticStep : 累计读取 35000 条记录,跳过  0 条记录,写入  35000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:32 WARN anaestheticStep : 累计读取 40000 条记录,跳过  0 条记录,写入  40000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:34 WARN anaestheticStep : 累计读取 45000 条记录,跳过  0 条记录,写入  45000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:35 WARN anaestheticStep : 累计读取 50000 条记录,跳过  0 条记录,写入  50000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:36 WARN anaestheticStep : 累计读取 55000 条记录,跳过  0 条记录,写入  55000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:37 WARN anaestheticStep : 累计读取 60000 条记录,跳过  0 条记录,写入  60000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:38 WARN anaestheticStep : 累计读取 65000 条记录,跳过  0 条记录,写入  65000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:40 WARN anaestheticStep : 累计读取 70000 条记录,跳过  0 条记录,写入  70000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:41 WARN anaestheticStep : 累计读取 75000 条记录,跳过  0 条记录,写入  75000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:42 WARN anaestheticStep : 累计读取 77556 条记录,跳过  0 条记录,写入  77556 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:07:42 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉药物使用记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:192) SchedulerLauncher.java  
+2017-01-18 11:10:02 WARN 相应时间段的手术信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:126) DeleteForFixAfterException.java  
+2017-01-18 11:10:06 WARN 相应时间段的麻醉信息已清空 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:140) DeleteForFixAfterException.java  
+2017-01-18 11:10:06 WARN 清空完毕 -----> tool.db.DeleteForFixAfterException.deleteBetweenLastAndCuDateFromAllTable(DeleteForFixAfterException.java:142) DeleteForFixAfterException.java  
+2017-01-18 11:10:06 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术主记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:158) SchedulerLauncher.java  
+2017-01-18 11:10:08 WARN opRecordStep : 累计读取 773 条记录,跳过  0 条记录,写入  773 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:09 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术主记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:160) SchedulerLauncher.java  
+2017-01-18 11:10:09 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术操作记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:166) SchedulerLauncher.java  
+2017-01-18 11:10:10 WARN opOperationStep : 累计读取 0 条记录,跳过  0 条记录,写入  0 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:10 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术操作记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:168) SchedulerLauncher.java  
+2017-01-18 11:10:10 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术材料使用记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:174) SchedulerLauncher.java  
+2017-01-18 11:10:11 WARN opMaterialStep : 累计读取 94 条记录,跳过  0 条记录,写入  94 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:11 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :手术材料使用记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:176) SchedulerLauncher.java  
+2017-01-18 11:10:11 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:182) SchedulerLauncher.java  
+2017-01-18 11:10:14 WARN anesthesiaRecordStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:15 WARN anesthesiaRecordStep : 累计读取 9431 条记录,跳过  0 条记录,写入  9431 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:15 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:184) SchedulerLauncher.java  
+2017-01-18 11:10:15 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉药物使用记录作业开始 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:190) SchedulerLauncher.java  
+2017-01-18 11:10:17 WARN anaestheticStep : 累计读取 5000 条记录,跳过  0 条记录,写入  5000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:18 WARN anaestheticStep : 累计读取 10000 条记录,跳过  0 条记录,写入  10000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:20 WARN anaestheticStep : 累计读取 15000 条记录,跳过  0 条记录,写入  15000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:21 WARN anaestheticStep : 累计读取 20000 条记录,跳过  0 条记录,写入  20000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:22 WARN anaestheticStep : 累计读取 25000 条记录,跳过  0 条记录,写入  25000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:23 WARN anaestheticStep : 累计读取 30000 条记录,跳过  0 条记录,写入  30000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:24 WARN anaestheticStep : 累计读取 35000 条记录,跳过  0 条记录,写入  35000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:25 WARN anaestheticStep : 累计读取 40000 条记录,跳过  0 条记录,写入  40000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:27 WARN anaestheticStep : 累计读取 45000 条记录,跳过  0 条记录,写入  45000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:28 WARN anaestheticStep : 累计读取 50000 条记录,跳过  0 条记录,写入  50000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:29 WARN anaestheticStep : 累计读取 55000 条记录,跳过  0 条记录,写入  55000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:30 WARN anaestheticStep : 累计读取 60000 条记录,跳过  0 条记录,写入  60000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:31 WARN anaestheticStep : 累计读取 65000 条记录,跳过  0 条记录,写入  65000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:33 WARN anaestheticStep : 累计读取 70000 条记录,跳过  0 条记录,写入  70000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:34 WARN anaestheticStep : 累计读取 75000 条记录,跳过  0 条记录,写入  75000 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:35 WARN anaestheticStep : 累计读取 77556 条记录,跳过  0 条记录,写入  77556 条记录 -----> listener.MyChunkListener.afterChunk(MyChunkListener.java:20) MyChunkListener.java  
+2017-01-18 11:10:35 WARN [ 1900-1-1 00:00:00 - 2017-01-18 00:00:00 ) :麻醉药物使用记录作业完毕 -----> schedulerLauncher.allJob.SchedulerLauncher.launch(SchedulerLauncher.java:192) SchedulerLauncher.java  

@@ -89,5 +89,17 @@
 		<bean:property name="username" value="${datasource_out.username}"></bean:property>
 		<bean:property name="password" value="${datasource_out.password}"></bean:property>
 	</bean:bean>
+	
+	<bean:bean id="dataSource_in_ma"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<bean:property name="driverClassName">
+			<bean:value>${datasource_in_ma.driver}</bean:value>
+		</bean:property>
+		<bean:property name="url">
+			<bean:value>${datasource_in_ma.url}</bean:value>
+		</bean:property>
+		<bean:property name="username" value="${datasource_in_ma.username}"></bean:property>
+		<bean:property name="password" value="${datasource_in_ma.password}"></bean:property>
+	</bean:bean>
 
 </bean:beans>
